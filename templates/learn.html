@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ lesson.title }}</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>{{ lesson.title }}</h1>
+    <h2>{{ lesson.title }}</h2>
     <p>{{ lesson.instruction }}</p>
 
-    {% if lesson.image %}
-    <img src="{{ lesson.image }}" alt="Chord Diagram" width="300">
+    {% if lesson.get('image') %}
+        <img src="{{ lesson.image }}" alt="Chord Diagram" width="300">
     {% endif %}
 
-    {% if lesson.audio %}
-    <audio id="lesson-audio" src="{{ lesson.audio }}"></audio>
-    <button id="play-audio">Play Audio 🎵</button>
+    {% if lesson.get('audio') %}
+        <audio controls>
+            <source src="{{ lesson.audio }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     {% endif %}
 
     <br><br>
-    <button id="next-btn" data-lesson-id="{{ lesson_id }}">Next ➡️</button>
-
-    <script src="/static/js/learn.js"></script>
+    <a href="{{ url_for('learn', lesson_id=lesson_id + 1) }}">
+        <button>Next Lesson</button>
+    </a>
 </body>
 </html>

@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Guitar Chords Trainer</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Guitar Chords - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/homepage.js') }}" defer></script>
 </head>
 <body>
-    <h1>🎸 Welcome to Guitar Chords Trainer!</h1>
-    <button id="start-btn">Start Learning</button>
-
-    <script src="/static/js/homepage.js"></script>
+    <h1>Welcome to Guitar Chords Beginner Training!</h1>
+    <button id="startButton">Start Learning</button>
 </body>
 </html>
