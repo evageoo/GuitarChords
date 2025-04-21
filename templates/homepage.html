@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <title>Guitar Chords - Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/homepage.js') }}" defer></script>
+    <script defer>
+        function startLearning() {
+            window.location.href = "{{ url_for('learn', lesson_id=1) }}";
+        }
+    </script>
 </head>
 <body>
     <h1>Welcome to Guitar Chords Beginner Training!</h1>
-    <button id="startButton">Start Learning</button>
+    <button id="startButton" onclick="startLearning()">Start Learning</button>
 </body>
 </html>

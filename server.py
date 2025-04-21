@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
-# Learning content (putting data directly inside Python!)
+# Learning content
 learning_data = {
     "1": {
         "title": "Learn Basic Strumming",
@@ -40,11 +40,9 @@ quiz_data = {
     }
 }
 
-# ROUTES
-
 @app.route('/')
 def home():
-    return render_template('homepage.html')  # using homepage.html now!
+    return render_template('homepage.html')
 
 @app.route('/learn/<int:lesson_id>')
 def learn(lesson_id):
@@ -77,6 +75,5 @@ def result():
     session.clear()
     return render_template('result.html', score=score, total=total)
 
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
