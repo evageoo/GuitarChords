@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h2>{{ question.question }}</h2>
+    {% if question.image %}
+        <img src="{{ question.image }}" alt="Chord Image" width="300">
+    {% endif %}
+    {% if question.audio %}
+        <audio controls src="{{ question.audio }}"></audio>
+    {% endif %}
+    <form action="/submit_quiz" method="post">
+        {% for option in question.options %}
+            <input type="radio" name="answer" value="{{ option }}"> {{ option }}<br>
+        {% endfor %}
+        <input type="hidden" name="correct" value="{{ question.correct }}">
+        <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

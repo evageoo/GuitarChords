@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ lesson.title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h2>{{ lesson.title }}</h2>
+    <p>{{ lesson.instruction }}</p>
+    {% if lesson.audio %}
+        <audio controls src="{{ lesson.audio }}"></audio>
+    {% endif %}
+    {% if lesson.image %}
+        <img src="{{ lesson.image }}" alt="Chord Diagram" width="300">
+    {% endif %}
+    <br><br>
+    <a href="/learn/{{ lesson_id + 1 }}">Next Lesson</a>
+</body>
+</html>
