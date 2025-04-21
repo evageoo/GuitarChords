@@ -2,24 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Quiz Question {{ quiz_id }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
+    <h1>🎯 Quiz Time!</h1>
     <h2>{{ question.question }}</h2>
+
     {% if question.image %}
-        <img src="{{ question.image }}" alt="Chord Image" width="300">
+    <img src="{{ question.image }}" alt="Chord Image" width="300">
     {% endif %}
+
     {% if question.audio %}
-        <audio controls src="{{ question.audio }}"></audio>
+    <audio id="quiz-audio" src="{{ question.audio }}"></audio>
+    <button id="play-quiz-audio">Play Audio 🎵</button>
     {% endif %}
-    <form action="/submit_quiz" method="post">
+
+    <form id="quiz-form" method="POST" action="{{ url_for('submit_quiz') }}">
         {% for option in question.options %}
-            <input type="radio" name="answer" value="{{ option }}"> {{ option }}<br>
+        <label>
+            <input type="radio" name="answer" value="{{ option }}" required> {{ option }}
+        </label><br>
         {% endfor %}
+
         <input type="hidden" name="correct" value="{{ question.correct }}">
         <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
-        <button type="submit">Submit</button>
+
+        <br>
+        <button type="submit">Submit Answer ✅</button>
     </form>
+
+    <script src="/static/js/quiz.js"></script>
 </body>
 </html>
