@@ -8,19 +8,21 @@ learning_data = {
     "1": {
         "title": "Learn Basic Strumming",
         "instruction": "Try strumming all the strings downward!",
-        "audio": "/static/media/strumming_audio.mp3"
+        "video": "/static/media/strum_materials/strum_demo.mp4",
+        "image": "/static/media/strum_materials/strum.png"
     },
     "2": {
         "title": "Learn A Major Chord",
         "instruction": "Place three fingers on the second fret above the bottom string and strum!",
-        "audio": "/static/media/a_major_chord_audio.mp3",
-        "image": "/static/media/chord_images/a_major.png"
+        "video": "/static/media/chord_videos/AChord.mp4",
+        "image": "/static/media/chord_images/a_major.png",
+        "image2": "/static/media/fret_diagram.png"
     },
     "3": {
-        "title": "Learn D Chord",
-        "instruction": "Use the specified fingers and strum only the bottom 4 strings.",
-        "audio": "/static/media/d_chord_audio.mp3",
-        "image": "/static/media/chord_images/d_chord.png"
+        "title": "Learn E Major Chord",
+        "instruction": "Strum all 6 strings downward: 1st finger on G-string 1st fret, 2nd finger on A-string 2nd fret, 3rd finger on D-string 2nd fret.",
+        "video": "/static/media/chord_videos/EChord.mp4",
+        "image": "/static/media/chord_images/e_major.png"
     }
 }
 
@@ -35,8 +37,8 @@ quiz_data = {
     "2": {
         "question": "Which chord matches this sound?",
         "options": ["A", "D", "E", "G"],
-        "correct": "D",
-        "audio": "/static/media/d_chord_audio.mp3"
+        "correct": "E",
+        "audio": "/static/media/e_major_chord_audio.mp3"
     }
 }
 

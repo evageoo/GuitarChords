@@ -1,3 +1,4 @@
+<!--strumming tutorial vid: https://www.youtube.com/watch?v=oFUji0lUjbU -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,11 @@
     <p>{{ lesson.instruction }}</p>
 
     {% if lesson.image %}
-        <img src="{{ lesson.image }}" alt="Chord Diagram" width="300">
+        <img src="{{ lesson.image }}" alt="Chord Diagram" width="200">
+    {% endif %}
+
+    {% if lesson.image2 %}
+        <img src="{{ lesson.image2 }}" alt="Chord Diagram" width="200">
     {% endif %}
 
     {% if lesson.audio %}
@@ -18,6 +23,13 @@
             <source src="{{ lesson.audio }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+    {% endif %}
+
+    {% if lesson.video %}
+        <video controls width="400">
+            <source src="{{ lesson.video }}" type="video/mp4">
+            Your browser does not support the audio element.
+        </video>
     {% endif %}
 
     <br><br>
