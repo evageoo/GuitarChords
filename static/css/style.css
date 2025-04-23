@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 40px;
@@ -6,4 +6,18 @@ body {
 audio, img{
     margin-top: 20px;
 }
+ */
 
+ body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h1, h2 {
+    color: #2c3e50;
+  }
+  
+  button, .btn {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+  
