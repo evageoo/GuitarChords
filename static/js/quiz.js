@@ -1,19 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const quizForm = document.getElementById('quiz-form');
-    if (quizForm) {
-        quizForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            quizForm.submit();
-        });
-    }
+$(function () {
+    $('#quiz-form').on('submit', function (event) {
+        event.preventDefault();
+        this.submit();
+    });
 
-    const playQuizAudioButton = document.getElementById('play-quiz-audio');
-    if (playQuizAudioButton) {
-        playQuizAudioButton.addEventListener('click', function() {
-            const audio = document.getElementById('quiz-audio');
-            if (audio) {
-                audio.play();
-            }
-        });
-    }
+    $('#play-quiz-audio').on('click', function () {
+        $('#quiz-audio')[0].play();
+    });
 });
