@@ -48,10 +48,19 @@ def home():
 
 @app.route('/learn/<int:lesson_id>')
 def learn(lesson_id):
-    if lesson_id > len(learning_data):
+    total_lessons = len(learning_data)
+
+    if lesson_id > total_lessons:
         return redirect(url_for('quiz', quiz_id=1))
-    lesson = learning_data[str(lesson_id)]
-    return render_template('learn.html', lesson=lesson, lesson_id=lesson_id)
+
+    lesson = learning_data.get(str(lesson_id))
+
+    # Calculate progress percentage
+    progress = int((lesson_id / total_lessons) * 100)
+
+    return render_template('learn.html', lesson=lesson, lesson_id=lesson_id, progress=progress)
+
+
 
 @app.route('/quiz/<int:quiz_id>')
 def quiz(quiz_id):
@@ -76,6 +85,7 @@ def result():
     total = len(quiz_data)
     session.clear()
     return render_template('result.html', score=score, total=total)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

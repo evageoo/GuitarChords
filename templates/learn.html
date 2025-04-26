@@ -102,6 +102,7 @@
 
 {% block content %}
 <div class="container text-center py-5">
+
   <h2 class="mb-4">{{ lesson.title }}</h2>
   <p class="lead">{{ lesson.instruction }}</p>
 
@@ -148,4 +149,19 @@
     Next Lesson
   </a>
 </div>
+
+  <!-- Progress Bar -->
+  <div class="progress mb-4" style="height: 25px;">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+      role="progressbar"
+      style="width: {{ progress }}%;"
+      aria-valuenow="{{ progress }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ progress }}%
+    </div>
+  </div>
+  
 {% endblock %}
