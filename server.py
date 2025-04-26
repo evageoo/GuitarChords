@@ -61,13 +61,19 @@ def learn(lesson_id):
     return render_template('learn.html', lesson=lesson, lesson_id=lesson_id, progress=progress)
 
 
-
 @app.route('/quiz/<int:quiz_id>')
 def quiz(quiz_id):
-    if quiz_id > len(quiz_data):
+    total_questions = len(quiz_data)
+
+    if quiz_id > total_questions:
         return redirect(url_for('result'))
+
     question = quiz_data[str(quiz_id)]
-    return render_template('quiz.html', question=question, quiz_id=quiz_id)
+
+    # Calculate quiz progress percentage
+    progress = int((quiz_id / total_questions) * 100)
+
+    return render_template('quiz.html', question=question, quiz_id=quiz_id, progress=progress)
 
 @app.route('/submit_quiz', methods=['POST'])
 def submit_quiz():
