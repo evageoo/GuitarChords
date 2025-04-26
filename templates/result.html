@@ -12,6 +12,8 @@
     <a href="/">Return to Home</a>
 </body>
 </html> -->
+
+<!--
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,3 +52,27 @@
     </div>
   </body>
 </html>
+-->
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg text-center p-5" style="max-width: 500px">
+    <h1 class="display-4 mb-3">🏁 Quiz Completed!</h1>
+    <p class="lead mb-4">
+      You scored <strong>{{ score }}</strong> out of <strong>{{ total }}</strong>!
+    </p>
+
+    {% if score == total %}
+    <p class="text-success mb-4">🎉 Perfect score! You're ready to rock!</p>
+    {% elif score > total / 2 %}
+    <p class="text-info mb-4">👏 Great job! Keep practicing and you'll master the chords soon.</p>
+    {% else %}
+    <p class="text-warning mb-4">💪 Keep going! Practice makes perfect.</p>
+    {% endif %}
+
+    <a href="/" class="btn btn-success">🏠 Back to Home</a>
+  </div>
+</div>
+{% endblock %}

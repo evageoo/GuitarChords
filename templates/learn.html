@@ -39,6 +39,7 @@
 </body>
 </html> -->
 
+<!--
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -96,3 +97,55 @@
     </div>
   </body>
 </html>
+-->
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container text-center py-5">
+  <h2 class="mb-4">{{ lesson.title }}</h2>
+  <p class="lead">{{ lesson.instruction }}</p>
+
+  {% if lesson.image %}
+  <img
+    src="{{ lesson.image }}"
+    class="img-fluid mb-3"
+    alt="Chord Diagram"
+    width="300"
+  />
+  {% endif %}
+
+  {% if lesson.image2 %}
+  <img
+    src="{{ lesson.image2 }}"
+    class="img-fluid mb-3"
+    alt="Chord Diagram"
+    width="300"
+  />
+  {% endif %}
+
+  {% if lesson.audio %}
+  <div class="mb-3">
+    <audio controls>
+      <source src="{{ lesson.audio }}" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  {% endif %}
+
+  {% if lesson.video %}
+  <div class="mb-4">
+    <video controls class="w-75">
+      <source src="{{ lesson.video }}" type="video/mp4" />
+      Your browser does not support the video element.
+    </video>
+  </div>
+  {% endif %}
+
+  <a
+    href="{{ url_for('learn', lesson_id=lesson_id + 1) }}"
+    class="btn btn-primary"
+  >
+    Next Lesson
+  </a>
+</div>
+{% endblock %}

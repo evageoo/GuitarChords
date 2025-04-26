@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+  <!--<head>
     <meta charset="UTF-8" />
     <title>Guitar Chords - Home</title>
     <link
@@ -17,6 +15,7 @@
       }
     </script>
   </head>
+  
   <body
     class="bg-light d-flex flex-column justify-content-center align-items-center vh-100"
   >
@@ -31,10 +30,25 @@
         >Start Learning</a
       >
     </div>
-  </body>
+  </body> -->
+  {% extends "layout.html" %}
 
-  <!-- <body>
-    <h1>Welcome to Guitar Chords Beginner Training!</h1>
-    <button id="startButton" onclick="startLearning()">Start Learning</button>
-</body> -->
-</html>
+  {% block content %}
+  <div class="container py-5">
+    <div class="text-center">
+      <h1 class="display-4 mb-3">🎸 Guitar Chords Beginner Training</h1>
+      <p class="lead mb-4">
+        Start your journey to becoming a guitarist one chord at a time!
+      </p>
+      <a href="{{ url_for('learn', lesson_id=1) }}" class="btn btn-success btn-lg">
+        Start Learning
+      </a>
+    </div>
+  </div>
+  
+  <script defer>
+    function startLearning() {
+      window.location.href = "{{ url_for('learn', lesson_id=1) }}";
+    }
+  </script>
+  {% endblock %}
