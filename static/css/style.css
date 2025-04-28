@@ -11,6 +11,9 @@ audio, img{
  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+  .title-font {
+    font-family: cursive;
+  }
   
   h1, h2 {
     color: #2c3e50;
@@ -20,4 +23,3 @@ audio, img{
     font-size: 1.1rem;
     padding: 10px 20px;
   }
-  
