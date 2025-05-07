@@ -1,6 +1,4 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container py-5">
   <div class="card shadow-lg mx-auto" style="max-width: 600px">
     <div class="card-body">
@@ -13,9 +11,7 @@
         alt="Chord Image"
         width="300"
       />
-      {% endif %}
-
-      {% if question.get('audio') %}
+      {% endif %} {% if question.get('audio') %}
       <div class="text-center mb-3">
         <audio controls>
           <source src="{{ question.audio }}" type="audio/mpeg" />
@@ -45,6 +41,13 @@
         <input type="hidden" name="quiz_id" value="{{ quiz_id }}" />
 
         <div class="text-center mt-4">
+          <a
+            href="javascript:history.back()"
+            class="btn btn-sm mr-2"
+            style="background-color: #b2d8b2; color: #2c3e50"
+          >
+            ← Go Back
+          </a>
           <button type="submit" class="btn btn-primary btn-lg">
             Submit Answer
           </button>
@@ -54,7 +57,7 @@
   </div>
   <!-- progress bar -->
   <div class="mt-4">
-    <div class="progress" style="height: 25px;">
+    <div class="progress" style="height: 25px">
       <div
         class="progress-bar progress-bar-striped progress-bar-animated bg-info"
         role="progressbar"

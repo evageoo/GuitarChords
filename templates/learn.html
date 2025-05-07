@@ -1,8 +1,5 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container text-center py-5">
-
   <h2 class="mb-4">{{ lesson.title }}</h2>
   <p class="lead">{{ lesson.instruction }}</p>
 
@@ -13,31 +10,25 @@
     alt="Chord Diagram"
     width="300"
   />
-  {% endif %}
-
-  {% if lesson.image2 %}
+  {% endif %} {% if lesson.image2 %}
   <img
     src="{{ lesson.image2 }}"
     class="img-fluid mb-3"
     alt="Chord Diagram"
     width="300"
   />
-  {% endif %}
-
-  {% if lesson.audio or lesson.video %}
+  {% endif %} {% if lesson.audio or lesson.video %}
   <div class="row justify-content-center mb-4">
     {% if lesson.audio %}
     <div class="col-md-4 text-center">
-      <audio controls style="width: 100%;">
+      <audio controls style="width: 100%">
         <source src="{{ lesson.audio }}" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
-    {% endif %}
-  
-    {% if lesson.video %}
+    {% endif %} {% if lesson.video %}
     <div class="col-md-6 text-center">
-      <video controls style="width: 100%; max-width: 300px;">
+      <video controls style="width: 100%; max-width: 300px">
         <source src="{{ lesson.video }}" type="video/mp4" />
         Your browser does not support the video element.
       </video>
@@ -45,27 +36,42 @@
     {% endif %}
   </div>
   {% endif %}
-  
-  <a
+  <div class="text-center mt-4">
+    <a
+      href="javascript:history.back()"
+      class="btn btn-sm mr-2"
+      style="background-color: #b2d8b2; color: #2c3e50"
+    >
+      ← Go Back
+    </a>
+    <a
+      href="{{ url_for('learn', lesson_id=lesson_id + 1) }}"
+      class="btn btn-success"
+    >
+      Next Lesson
+    </a>
+  </div>
+
+  <!-- <a
     href="{{ url_for('learn', lesson_id=lesson_id + 1) }}"
     class="btn btn-primary"
   >
     Next Lesson
-  </a>
+  </a> -->
 </div>
 
-  <!-- progress bar -->
-  <div class="progress mb-4" style="height: 25px;">
-    <div
-      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-      role="progressbar"
-      style="width: {{ progress }}%;"
-      aria-valuenow="{{ progress }}"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-      {{ progress }}%
-    </div>
+<!-- progress bar -->
+<div class="progress mb-4" style="height: 25px">
+  <div
+    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+    role="progressbar"
+    style="width: {{ progress }}%;"
+    aria-valuenow="{{ progress }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    {{ progress }}%
   </div>
+</div>
 
 {% endblock %}
