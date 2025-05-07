@@ -16,28 +16,33 @@ learning_data = {
         "instruction": "Place three fingers on the second fret above the bottom string and strum!",
         "video": "/static/media/chord_videos/AChord.mp4",
         "image": "/static/media/chord_images/a_major.png",
-        "image2": "/static/media/fret_diagram.png"
+        "image2": "/static/media/fret_diagram.png",
+        "audio": "/static/media/a_chord_audio.mp3"
     },
     "3": {
         "title": "Learn E Major Chord",
         "instruction": "Strum all 6 strings downward: 1st finger on G-string 1st fret, 2nd finger on A-string 2nd fret, 3rd finger on D-string 2nd fret.",
         "video": "/static/media/chord_videos/EChord.mp4",
-        "image": "/static/media/chord_images/e_major.png"
+        "image": "/static/media/chord_images/e_major.png",
+        "audio": "/static/media/e_major_chord_audio.mp3"
     }, 
     "4": {
         "title": "Learn D Major Chord",
         "instruction": "Place your index on the 2nd fret of the G string, middle on the 2nd fret of the high E, ring on the 3rd fret of the B string, and strum the bottom 4 strings.",
-        "image": "/static/media/chord_images/d_major.png"
+        "image": "/static/media/chord_images/d_major.png",
+        "audio": "/static/media/d_chord_audio.mp3"
     },
     "5": {
         "title": "Learn G Major Chord",
         "instruction": "Place your middle on the 3rd fret of the low E, index on the 2nd fret of A, ring on the 3rd fret of high E, pinky on the 3rd fret of B, and strum all 6 strings",
-        "image": "/static/media/chord_images/g_major.png"
+        "image": "/static/media/chord_images/g_major.png",
+        "audio": "/static/media/g_chord_audio.mp3"
     }, 
     "6": {
         "title": "Learn C Major Chord",
         "instruction": "Place your ring on the 3rd fret of A, middle on the 2nd fret of D, index on the 1st fret of B, and strum from the A string down (skip low E)",
-        "image": "/static/media/chord_images/c_major.png"
+        "image": "/static/media/chord_images/c_major.png",
+        "audio": "/static/media/c_chord_audio.mp3"
     }
 }
 
