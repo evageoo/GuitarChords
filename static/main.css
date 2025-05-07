@@ -10,6 +10,7 @@ audio, img{
 
  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #b9e1b7;
   }
   .title-font {
     font-family: cursive;
@@ -22,4 +23,16 @@ audio, img{
   button, .btn {
     font-size: 1.1rem;
     padding: 10px 20px;
+    background-color: #1c8a43;
   }
+
+  .custom-navbar {
+    background-color: rgb(97, 156, 71) !important;
+
+  }
+
+  .custom-navbar .navbar-brand,
+  .custom-navbar .nav-link {
+    color: white !important;
+  }
+

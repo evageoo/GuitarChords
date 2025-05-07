@@ -124,24 +124,28 @@
   />
   {% endif %}
 
-  {% if lesson.audio %}
-  <div class="mb-3">
-    <audio controls>
-      <source src="{{ lesson.audio }}" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+  {% if lesson.audio or lesson.video %}
+  <div class="row justify-content-center mb-4">
+    {% if lesson.audio %}
+    <div class="col-md-4 text-center">
+      <audio controls style="width: 100%;">
+        <source src="{{ lesson.audio }}" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    {% endif %}
+  
+    {% if lesson.video %}
+    <div class="col-md-6 text-center">
+      <video controls style="width: 100%; max-width: 300px;">
+        <source src="{{ lesson.video }}" type="video/mp4" />
+        Your browser does not support the video element.
+      </video>
+    </div>
+    {% endif %}
   </div>
   {% endif %}
-
-  {% if lesson.video %}
-  <div class="mb-4">
-    <video controls class="w-75">
-      <source src="{{ lesson.video }}" type="video/mp4" />
-      Your browser does not support the video element.
-    </video>
-  </div>
-  {% endif %}
-
+  
   <a
     href="{{ url_for('learn', lesson_id=lesson_id + 1) }}"
     class="btn btn-primary"
