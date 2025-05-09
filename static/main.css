@@ -36,3 +36,25 @@ audio, img{
     color: white !important;
   }
 
+  .finger-circles {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    min-height: 40px; /* ensures space is reserved */
+    margin-bottom: 10px;
+  }
+  
+  .finger-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #3498db; /* still visible without text */
+    border-radius: 50%;
+    position: absolute;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+  
+

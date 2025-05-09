@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import json
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -60,6 +61,17 @@ quiz_data = {
         "options": ["A", "D", "E", "G"],
         "correct": "E",
         "audio": "/static/media/e_major_chord_audio.mp3"
+    },
+    "3": {
+        "type": "drag_drop",
+        "question": "Place your fingers to form an A Major chord",
+        "correct": {
+            "positions": [
+                {"finger": "1", "string": 2, "fret": 2},
+                {"finger": "2", "string": 3, "fret": 2},
+                {"finger": "3", "string": 4, "fret": 2}
+            ]
+        }
     }
 }
 
@@ -96,15 +108,83 @@ def quiz(quiz_id):
 
     return render_template('quiz.html', question=question, quiz_id=quiz_id, progress=progress)
 
+def check_finger_positions(user_positions, correct_positions):
+    if not user_positions:
+        return False
+    
+    # Convert string positions to fret and string numbers
+    def get_fret_and_string(x, y):
+        # Assuming 6 strings and 5 frets
+        string_width = 300 / 5  # 300px width divided by 5 spaces between strings
+        fret_height = 200 / 5   # 200px height divided by 5 frets
+        
+        string = round(x / string_width)
+        fret = round(y / fret_height)
+        
+        # Ensure values are within bounds
+        string = max(0, min(5, string))
+        fret = max(0, min(4, fret))
+        
+        return string, fret
+    
+    # Convert user positions to fret and string numbers
+    user_positions = json.loads(user_positions)
+    user_finger_positions = []
+    
+    for pos in user_positions:
+        string, fret = get_fret_and_string(pos['x'], pos['y'])
+        user_finger_positions.append({
+            'finger': pos['finger'],
+            'string': string,
+            'fret': fret
+        })
+    
+    # Check if all correct positions are present in user positions
+    correct_positions = correct_positions['positions']
+    
+    # First check if we have exactly the right number of fingers
+    if len(user_finger_positions) != len(correct_positions):
+        return False
+    
+    # Then check if all correct positions are present
+    for correct_pos in correct_positions:
+        found = False
+        for user_pos in user_finger_positions:
+            if (user_pos['finger'] == correct_pos['finger'] and
+                user_pos['string'] == correct_pos['string'] and
+                user_pos['fret'] == correct_pos['fret']):
+                found = True
+                break
+        if not found:
+            return False
+    
+    return True
+
 @app.route('/submit_quiz', methods=['POST'])
 def submit_quiz():
-    answer = request.form['answer']
-    correct = request.form['correct']
+    question_type = request.form.get('question_type', 'multiple_choice')
+    quiz_id = request.form['quiz_id']
+    
     if 'score' not in session:
         session['score'] = 0
-    if answer == correct:
-        session['score'] += 1
-    return redirect(url_for('quiz', quiz_id=int(request.form['quiz_id']) + 1))
+    
+    if question_type == 'drag_drop':
+        try:
+            finger_positions = request.form.get('finger_positions', '[]')
+            correct_positions = json.loads(request.form['correct'])
+            if check_finger_positions(finger_positions, correct_positions):
+                session['score'] += 1
+        except json.JSONDecodeError:
+            # Handle invalid JSON
+            print("Invalid JSON received:", finger_positions)
+            session['score'] = session.get('score', 0)  # Keep existing score
+    else:
+        answer = request.form['answer']
+        correct = request.form['correct']
+        if answer == correct:
+            session['score'] += 1
+    
+    return redirect(url_for('quiz', quiz_id=int(quiz_id) + 1))
 
 @app.route('/result')
 def result():
