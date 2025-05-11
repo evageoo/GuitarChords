@@ -46,21 +46,33 @@
         </div>
       </form>
       {% else %}
-      {% for option in question.options %}
-      <div class="form-check mb-2">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="answer"
-          value="{{ option }}"
-          id="option{{ loop.index }}"
-          required
-        />
-        <label class="form-check-label" for="option{{ loop.index }}">
-          {{ option }}
-        </label>
-      </div>
-      {% endfor %}
+      <form method="POST" action="{{ url_for('submit_quiz') }}" id="quizForm">
+        <input type="hidden" name="quiz_id" value="{{ quiz_id }}" />
+        <input type="hidden" name="question_type" value="{{ question.type }}" />
+        {% for option in question.options %}
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="answer"
+            value="{{ option }}"
+            id="option{{ loop.index }}"
+            required
+          />
+          <label class="form-check-label" for="option{{ loop.index }}">
+            {{ option }}
+          </label>
+        </div>
+        {% endfor %}
+        <div id="feedback" class="text-center mb-3"></div>
+        <div class="text-center">
+          <button type="button" id="nextBtn" class="btn btn-success btn-lg" style="display:none; margin-top: 10px;">Next</button>
+        </div>
+        <div class="text-center mt-4">
+          <a href="javascript:history.back()" class="btn btn-sm mr-2" style="background-color: #b2d8b2; color: #2c3e50">← Go Back</a>
+          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit Answer</button>
+        </div>
+      </form>
       {% endif %}
     </div>
   </div>
@@ -81,6 +93,10 @@
   </div>
 </div>
 
+<script>
+  window.next_url = "{{ next_url }}";
+</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 <script src="{{ url_for('static', filename='js/fret-diagram-image.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz-feedback.js') }}"></script>
 {% endblock %}

@@ -106,7 +106,19 @@ def quiz(quiz_id):
     # Calculate quiz progress percentage
     progress = int((quiz_id / total_questions) * 100)
 
-    return render_template('quiz.html', question=question, quiz_id=quiz_id, progress=progress)
+    # Determine next_url
+    if quiz_id < total_questions:
+        next_url = url_for('quiz', quiz_id=quiz_id + 1)
+    else:
+        next_url = url_for('result')
+
+    return render_template(
+        'quiz.html',
+        question=question,
+        quiz_id=quiz_id,
+        progress=progress,
+        next_url=next_url  # <-- pass this to the template
+    )
 
 def check_finger_positions(user_positions, correct_positions):
     if not user_positions:
