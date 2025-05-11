@@ -57,10 +57,13 @@ quiz_data = {
         "image": "/static/media/chord_images/a_major.png"
     },
     "2": {
-        "question": "Which chord matches this sound?",
-        "options": ["A", "D", "E", "G"],
-        "correct": "E",
-        "audio": "/static/media/e_major_chord_audio.mp3"
+        "type": "string_input",
+        "question": "Type the letter names of the highlighted guitar strings.",
+        "strings": [
+            {"name": "A", "index": 1},  # 5th string from left (E A D G B e)
+            {"name": "B", "index": 4}   # 2nd string from left
+        ],
+        "image": "/static/media/Guitar-chord-diagram.jpg"
     },
     "3": {
         "type": "drag_drop",
@@ -91,7 +94,16 @@ def learn(lesson_id):
     # Calculate progress percentage
     progress = int((lesson_id / total_lessons) * 100)
 
-    return render_template('learn.html', lesson=lesson, lesson_id=lesson_id, progress=progress)
+    # Is this the last lesson?
+    is_last_lesson = (lesson_id == total_lessons)
+
+    return render_template(
+        'learn.html',
+        lesson=lesson,
+        lesson_id=lesson_id,
+        progress=progress,
+        is_last_lesson=is_last_lesson
+    )
 
 
 @app.route('/quiz/<int:quiz_id>')
@@ -190,6 +202,13 @@ def submit_quiz():
             # Handle invalid JSON
             print("Invalid JSON received:", finger_positions)
             session['score'] = session.get('score', 0)  # Keep existing score
+    elif question_type == 'string_input':
+        correct_0 = request.form.get('correct_0', '').strip().upper()
+        correct_1 = request.form.get('correct_1', '').strip().upper()
+        answer_0 = request.form.get('string_0', '').strip().upper()
+        answer_1 = request.form.get('string_1', '').strip().upper()
+        if answer_0 == correct_0 and answer_1 == correct_1:
+            session['score'] += 1
     else:
         answer = request.form['answer']
         correct = request.form['correct']

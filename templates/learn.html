@@ -44,12 +44,11 @@
     >
       ← Go Back
     </a>
-    <a
-      href="{{ url_for('learn', lesson_id=lesson_id + 1) }}"
-      class="btn btn-success"
-    >
-      Next Lesson
-    </a>
+    {% if is_last_lesson %}
+      <a href="{{ url_for('quiz', quiz_id=1) }}" class="btn btn-success btn-lg" id="nextBtn">Begin Quiz</a>
+    {% else %}
+      <a href="{{ url_for('learn', lesson_id=lesson_id+1) }}" class="btn btn-success btn-lg" id="nextBtn">Next Lesson</a>
+    {% endif %}
   </div>
 
   <!-- <a

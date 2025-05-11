@@ -4,6 +4,45 @@ document.addEventListener('DOMContentLoaded', function () {
   const submitBtn = document.getElementById('submitBtn');
   const nextBtn = document.getElementById('nextBtn');
 
+  if (quizForm && quizForm.elements['question_type'] && quizForm.elements['question_type'].value === 'string_input') {
+    quizForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let correct0 = quizForm.elements['correct_0'].value.trim().toUpperCase();
+      let correct1 = quizForm.elements['correct_1'].value.trim().toUpperCase();
+      let answer0 = quizForm.elements['string_0'].value.trim().toUpperCase();
+      let answer1 = quizForm.elements['string_1'].value.trim().toUpperCase();
+      let correctCount = 0;
+      let feedbackMsg = '';
+      if (answer0 === correct0) {
+        feedbackMsg += '<span style="color:#28a745;">String 1: Correct!</span><br>';
+        correctCount++;
+      } else {
+        feedbackMsg += `<span style="color:#dc3545;">String 1: Incorrect. Correct answer: ${correct0}</span><br>`;
+      }
+      if (answer1 === correct1) {
+        feedbackMsg += '<span style="color:#28a745;">String 2: Correct!</span><br>';
+        correctCount++;
+      } else {
+        feedbackMsg += `<span style="color:#dc3545;">String 2: Incorrect. Correct answer: ${correct1}</span><br>`;
+      }
+      if (correctCount === 2) {
+        feedback.innerHTML = '✅ Correct! Great job!<br>' + feedbackMsg;
+        feedback.style.color = '#28a745';
+      } else {
+        feedback.innerHTML = '❌ Not quite!<br>' + feedbackMsg;
+        feedback.style.color = '#dc3545';
+      }
+      if (submitBtn) submitBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'inline-block';
+    });
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        window.location.href = window.next_url;
+      });
+    }
+    return; // Don't run the rest of the script for this type
+  }
+
   // Find the correct answer from a hidden input or data attribute
   let correctAnswer = null;
   const correctInput = document.querySelector('input[name="correct"]');
