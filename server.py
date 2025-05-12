@@ -92,7 +92,13 @@ quiz_data = {
         "options": ["All 6 strings", "Only the 5 highest strings (A to high E)", "Only the 4 middle strings","Only the 3 highest strings"],
         "correct": "Only the 5 highest strings (A to high E)"
     },
-    "5":{
+    "5": {
+        "question": "Which chord matches this sound?",
+        "options": ["A", "D", "E", "G"],
+        "correct": "E",
+        "audio": "/static/media/e_major_chord_audio.mp3"
+    },
+    "6":{
         "type": "multiple_choice",
         "question": "When switching between A and D, what finger do you usually move first?",
         "options": [
