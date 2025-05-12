@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 import csv
+import os
 from flask import request
+
+csv_file_path = 'page_times.csv'
+with open(csv_file_path, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Page', 'TimeSpentSeconds'])
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
