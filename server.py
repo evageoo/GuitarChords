@@ -225,6 +225,10 @@ def result():
     session.clear()
     return render_template('result.html', score=score, total=total)
 
+@app.route('/vocab')
+def vocab():
+    return render_template('vocab.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

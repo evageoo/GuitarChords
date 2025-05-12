@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> 
+
+<div class="container py-5">
+    <h1 class="mb-4" id="vocab-header">Guitar Vocabulary</h1>
+
+    <div class="mb-2">
+        <p><strong>Fret</strong> - A fret is a raised element on the neck of a guitar. Pressing a string against a fret changes the pitch of the note.</p>
+    </div>
+
+    <div class="mb-2">
+        <p><strong>Strumming</strong> - Strumming is the action of sweeping your hand across the strings to play chords rhythmically.</p>
+    </div>
+
+    <div class="mb-2">
+        <p><strong>Acoustic Guitar Strings</strong> - The six strings of a standard acoustic guitar, from thickest to thinnest, are:</p>
+        <ul>
+            <li><strong>6th String (Low E)</strong> - The lowest-pitched string</li>
+            <li><strong>5th String (A)</strong> - The second-lowest pitch</li>
+            <li><strong>4th String (D)</strong></li>
+            <li><strong>3rd String (G)</strong></li>
+            <li><strong>2nd String (B)</strong></li>
+            <li><strong>1st String (High e)</strong> - The highest-pitched string</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
