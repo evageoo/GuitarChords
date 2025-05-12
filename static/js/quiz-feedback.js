@@ -4,7 +4,11 @@
 //   const submitBtn = document.getElementById('submitBtn');
 //   const nextBtn = document.getElementById('nextBtn');
 
-//   if (quizForm && quizForm.elements['question_type'] && quizForm.elements['question_type'].value === 'string_input') {
+//   if (!quizForm) return;
+
+//   const questionType = quizForm.elements['question_type']?.value || null;
+
+//   if (questionType === 'string_input') {
 //     quizForm.addEventListener('submit', function (e) {
 //       e.preventDefault();
 //       let correct0 = quizForm.elements['correct_0'].value.trim().toUpperCase();
@@ -13,6 +17,7 @@
 //       let answer1 = quizForm.elements['string_1'].value.trim().toUpperCase();
 //       let correctCount = 0;
 //       let feedbackMsg = '';
+
 //       if (answer0 === correct0) {
 //         feedbackMsg += '<span style="color:#28a745;">String 1: Correct!</span><br>';
 //         correctCount++;
@@ -25,86 +30,79 @@
 //       } else {
 //         feedbackMsg += `<span style="color:#dc3545;">String 2: Incorrect. Correct answer: ${correct1}</span><br>`;
 //       }
-//       if (correctCount === 2) {
-//         feedback.innerHTML = '✅ Correct! Great job!<br>' + feedbackMsg;
-//         feedback.style.color = '#28a745';
-//       } else {
-//         feedback.innerHTML = '❌ Not quite!<br>' + feedbackMsg;
-//         feedback.style.color = '#dc3545';
-//       }
+
+//       feedback.innerHTML = correctCount === 2
+//         ? '✅ Correct! Great job!<br>' + feedbackMsg
+//         : '❌ Not quite!<br>' + feedbackMsg;
+
+//       feedback.style.color = correctCount === 2 ? '#28a745' : '#dc3545';
+
 //       if (submitBtn) submitBtn.style.display = 'none';
 //       if (nextBtn) nextBtn.style.display = 'inline-block';
 //     });
+
 //     if (nextBtn) {
-//       nextBtn.addEventListener('click', function() {
-//         window.location.href = window.next_url;
+//       nextBtn.addEventListener('click', function () {
+//         quizForm.submit();  // Submit to server to count score
 //       });
 //     }
-//     return; // Don't run the rest of the script for this type
+
+//     return;
 //   }
 
-//   // Find the correct answer from a hidden input or data attribute
+//   // For multiple choice and drag/drop
 //   let correctAnswer = null;
 //   const correctInput = document.querySelector('input[name="correct"]');
 //   if (correctInput) {
 //     correctAnswer = correctInput.value;
 //   }
 
-//   // Get next_url if present
-//   let nextUrl = '/result';
-//   if (window.next_url) {
-//     nextUrl = window.next_url;
-//   } else if (typeof NEXT_URL !== 'undefined') {
-//     nextUrl = NEXT_URL;
-//   }
+//   let nextUrl = window.next_url || (typeof NEXT_URL !== 'undefined' ? NEXT_URL : '/result');
 
-//   if (quizForm) {
-//     quizForm.addEventListener('submit', function (e) {
-//       e.preventDefault();
-//       let selected = quizForm.querySelector('input[name="answer"]:checked');
-//       if (!selected) return;
-//       let isCorrect = false;
-//       if (correctAnswer !== null) {
-//         isCorrect = (selected.value === correctAnswer);
-//       }
-//       if (isCorrect) {
-//         feedback.innerHTML = '✅ Correct! Great job!';
-//         feedback.style.color = '#28a745';
-//         // Optionally, update score in sessionStorage
-//         sessionStorage.setItem('lastQuizCorrect', 'true');
-//       } else {
-//         feedback.innerHTML = '❌ Not quite!<br>Correct answer: ' + (correctAnswer || '');
-//         feedback.style.color = '#dc3545';
-//         sessionStorage.setItem('lastQuizCorrect', 'false');
-//       }
-//       if (submitBtn) submitBtn.style.display = 'none';
-//       if (nextBtn) nextBtn.style.display = 'inline-block';
-//     });
-//   }
+//   quizForm.addEventListener('submit', function (e) {
+//     e.preventDefault();
+
+//     let selected = quizForm.querySelector('input[name="answer"]:checked');
+//     if (!selected) return;
+
+//     const isCorrect = (selected.value === correctAnswer);
+
+//     feedback.innerHTML = isCorrect
+//       ? '✅ Correct! Great job!'
+//       : `❌ Not quite!<br>Correct answer: ${correctAnswer || ''}`;
+//     feedback.style.color = isCorrect ? '#28a745' : '#dc3545';
+
+//     if (submitBtn) submitBtn.style.display = 'none';
+//     if (nextBtn) nextBtn.style.display = 'inline-block';
+//   });
+
 //   if (nextBtn) {
-//     nextBtn.addEventListener('click', function() {
-//       window.location.href = nextUrl;
+//     nextBtn.addEventListener('click', function () {
+//       quizForm.submit(); // Submit to server to count score
 //     });
 //   }
-// }); 
+// });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const quizForm = document.getElementById('quizForm');
-  const feedback = document.getElementById('feedback');
-  const submitBtn = document.getElementById('submitBtn');
-  const nextBtn = document.getElementById('nextBtn');
 
-  if (!quizForm) return;
+$(function () {
+  const $quizForm = $('#quizForm');
+  const $feedback = $('#feedback');
+  const $submitBtn = $('#submitBtn');
+  const $nextBtn = $('#nextBtn');
 
-  const questionType = quizForm.elements['question_type']?.value || null;
+  if (!$quizForm.length) return;
+
+  const questionType = $quizForm.find('[name="question_type"]').val();
 
   if (questionType === 'string_input') {
-    quizForm.addEventListener('submit', function (e) {
+    $quizForm.on('submit', function (e) {
       e.preventDefault();
-      let correct0 = quizForm.elements['correct_0'].value.trim().toUpperCase();
-      let correct1 = quizForm.elements['correct_1'].value.trim().toUpperCase();
-      let answer0 = quizForm.elements['string_0'].value.trim().toUpperCase();
-      let answer1 = quizForm.elements['string_1'].value.trim().toUpperCase();
+
+      const correct0 = $quizForm.find('[name="correct_0"]').val().trim().toUpperCase();
+      const correct1 = $quizForm.find('[name="correct_1"]').val().trim().toUpperCase();
+      const answer0 = $quizForm.find('[name="string_0"]').val().trim().toUpperCase();
+      const answer1 = $quizForm.find('[name="string_1"]').val().trim().toUpperCase();
+
       let correctCount = 0;
       let feedbackMsg = '';
 
@@ -114,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         feedbackMsg += `<span style="color:#dc3545;">String 1: Incorrect. Correct answer: ${correct0}</span><br>`;
       }
+
       if (answer1 === correct1) {
         feedbackMsg += '<span style="color:#28a745;">String 2: Correct!</span><br>';
         correctCount++;
@@ -121,55 +120,43 @@ document.addEventListener('DOMContentLoaded', function () {
         feedbackMsg += `<span style="color:#dc3545;">String 2: Incorrect. Correct answer: ${correct1}</span><br>`;
       }
 
-      feedback.innerHTML = correctCount === 2
-        ? '✅ Correct! Great job!<br>' + feedbackMsg
-        : '❌ Not quite!<br>' + feedbackMsg;
+      $feedback
+        .html((correctCount === 2 ? '✅ Correct! Great job!<br>' : '❌ Not quite!<br>') + feedbackMsg)
+        .css('color', correctCount === 2 ? '#28a745' : '#dc3545');
 
-      feedback.style.color = correctCount === 2 ? '#28a745' : '#dc3545';
-
-      if (submitBtn) submitBtn.style.display = 'none';
-      if (nextBtn) nextBtn.style.display = 'inline-block';
+      $submitBtn.hide();
+      $nextBtn.show();
     });
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function () {
-        quizForm.submit();  // Submit to server to count score
-      });
-    }
+    $nextBtn.on('click', function () {
+      $quizForm[0].submit(); // submit to server for scoring
+    });
 
     return;
   }
 
-  // For multiple choice and drag/drop
-  let correctAnswer = null;
-  const correctInput = document.querySelector('input[name="correct"]');
-  if (correctInput) {
-    correctAnswer = correctInput.value;
-  }
+  // multiple choice or drag-drop
+  const correctAnswer = $quizForm.find('[name="correct"]').val();
 
-  let nextUrl = window.next_url || (typeof NEXT_URL !== 'undefined' ? NEXT_URL : '/result');
-
-  quizForm.addEventListener('submit', function (e) {
+  $quizForm.on('submit', function (e) {
     e.preventDefault();
 
-    let selected = quizForm.querySelector('input[name="answer"]:checked');
+    const selected = $quizForm.find('input[name="answer"]:checked').val();
     if (!selected) return;
 
-    const isCorrect = (selected.value === correctAnswer);
+    const isCorrect = selected === correctAnswer;
 
-    feedback.innerHTML = isCorrect
-      ? '✅ Correct! Great job!'
-      : `❌ Not quite!<br>Correct answer: ${correctAnswer || ''}`;
-    feedback.style.color = isCorrect ? '#28a745' : '#dc3545';
+    $feedback
+      .html(isCorrect
+        ? '✅ Correct! Great job!'
+        : `❌ Not quite!<br>Correct answer: ${correctAnswer}`)
+      .css('color', isCorrect ? '#28a745' : '#dc3545');
 
-    if (submitBtn) submitBtn.style.display = 'none';
-    if (nextBtn) nextBtn.style.display = 'inline-block';
+    $submitBtn.hide();
+    $nextBtn.show();
   });
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function () {
-      quizForm.submit(); // Submit to server to count score
-    });
-  }
+  $nextBtn.on('click', function () {
+    $quizForm[0].submit();
+  });
 });
-
