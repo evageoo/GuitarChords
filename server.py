@@ -51,6 +51,7 @@ learning_data = {
 # Quiz content
 quiz_data = {
     "1": {
+        "type": "multiple_choice",
         "question": "Which chord is being played?",
         "options": ["A", "B", "C", "G"],
         "correct": "G",
