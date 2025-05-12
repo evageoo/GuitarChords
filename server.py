@@ -63,7 +63,7 @@ quiz_data = {
         "question": "Which chord is being played?",
         "options": ["A", "B", "C", "G"],
         "correct": "G",
-        "image": "/static/media/chord_images/g_major.png"
+        "image": "/static/media/g_major.png"
     },
     "2": {
         "type": "string_input",
