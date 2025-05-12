@@ -1,48 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="icon" href="data:,">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
 
-<!-- jquery -->
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>  
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
 
-<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
 
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" />
 
     <title>guitar</title>
   </head>
   <body>
-    
-    
-<nav class="navbar navbar-expand-lg custom-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">Guitar Chords</a>
-      <div class="navbar-nav">
-        <a class="nav-link" href="/learn/1">Learning</a>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">Guitar Chords</a>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/learn/1">Learning</a>
+        </div>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/quiz/1">Quiz</a>
+        </div>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/vocab">Vocab Page</a>
+        </div>
       </div>
-      <div class="navbar-nav">
-        <a class="nav-link" href="/quiz/1">Quiz</a>
-      </div>
-      <div class="navbar-nav">
-        <a class="nav-link" href="/vocab">Vocab Page</a>
-      </div>
-  </div>
-</nav>
+    </nav>
 
-    <div class="container">   
-        {% block content %}
-        {% endblock %}
-    </div>
+    <div class="container">{% block content %} {% endblock %}</div>
+    <script>
+      let startTime = Date.now();
 
+      window.addEventListener("beforeunload", function () {
+        const endTime = Date.now();
+        const duration = Math.round((endTime - startTime) / 1000); // in seconds
+
+        navigator.sendBeacon(
+          "/log_time",
+          JSON.stringify({
+            path: window.location.pathname,
+            duration: duration,
+          })
+        );
+      });
+    </script>
   </body>
-
-
 </html>
-

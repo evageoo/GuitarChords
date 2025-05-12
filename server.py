@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
+import csv
+from flask import request
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -76,6 +78,23 @@ quiz_data = {
                 {"finger": "3", "string": 4, "fret": 2}
             ]
         }
+    },
+    "4":{
+        "type": "multiple_choice",
+        "question": "Which strings do you strum when playing the A major chord?",
+        "options": ["All 6 strings", "Only the 5 highest strings (A to high E)", "Only the 4 middle strings","Only the 3 highest strings"],
+        "correct": "Only the 5 highest strings (A to high E)"
+    },
+    "5":{
+        "type": "multiple_choice",
+        "question": "When switching between A and D, what finger do you usually move first?",
+        "options": [
+        "Index finger",
+        "Middle finger",
+        "Ring finger",
+        "Pinkie finger"
+    ],
+    "correct":"Index finger"
     }
 }
 
@@ -228,6 +247,18 @@ def result():
 @app.route('/vocab')
 def vocab():
     return render_template('vocab.html')
+
+@app.route('/log_time', methods=['POST'])
+def log_time():
+    data = request.get_data(as_text=True)
+    import json
+    parsed = json.loads(data)
+
+    with open('page_times.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([parsed['path'], parsed['duration']])
+
+    return '', 204  # no content
 
 
 if __name__ == '__main__':
