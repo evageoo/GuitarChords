@@ -268,9 +268,26 @@ $(function () {
           $feedback.css('color', '#28a745');
           sessionStorage.setItem('dragDropCorrect', 'true');
         } else {
-          $feedback.html('❌ Not quite!<br>' + correctMsg + feedbackMsg);
+          $feedback.html('❌ Not quite!<br>' + correctMsg + feedbackMsg +
+            '<br><span id="showCorrectChord" style="color: #007bff; text-decoration: underline; cursor: pointer; margin-left: 8px; position: relative; font-size: 1.1em;">See correct A Major chord' +
+            '<span id="correctChordPopup" style="display:none; position: absolute; left: 0; top: 28px; background: #fff; border: 1px solid #888; border-radius: 10px; padding: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.18); z-index: 20; min-width: 270px; max-width: 320px;">' +
+            '<img src="/static/media/chord_images/a_major.png" alt="A Major Chord" style="width: 260px;">' +
+            '</span></span>');
           $feedback.css('color', '#dc3545');
-          sessionStorage.setItem('dragDropCorrect', 'false');
+          // jQuery for hover popup
+          $(document).off('mouseenter mouseleave focus blur', '#showCorrectChord');
+          $(document).on('mouseenter', '#showCorrectChord', function() {
+            $('#correctChordPopup').show();
+          });
+          $(document).on('mouseleave', '#showCorrectChord', function() {
+            $('#correctChordPopup').hide();
+          });
+          $(document).on('focus', '#showCorrectChord', function() {
+            $('#correctChordPopup').show();
+          });
+          $(document).on('blur', '#showCorrectChord', function() {
+            $('#correctChordPopup').hide();
+          });
         }
         $submitBtn.hide();
         $nextBtn.show();
