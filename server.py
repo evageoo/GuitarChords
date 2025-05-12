@@ -16,13 +16,13 @@ app.secret_key = 'supersecretkey'
 learning_data = {
     "1": {
         "title": "Learn Basic Strumming",
-        "instruction": "Try strumming all the strings downward!",
+        "instruction": "Strum down across all six strings with a relaxed wrist.",
         "video": "/static/media/strum_materials/strum_demo.mp4",
         "image": "/static/media/strum_materials/strum.png"
     },
     "2": {
         "title": "Learn A Major Chord",
-        "instruction": "Place three fingers on the second fret above the bottom string and strum!",
+        "instruction": "Place your index, middle, and ring fingers on the 2nd fret of the D, G, and B strings. Strum from the A string downward.",
         "video": "/static/media/chord_videos/AChord.mp4",
         "image": "/static/media/chord_images/a_major.png",
         "image2": "/static/media/fret_diagram.png",
@@ -30,30 +30,31 @@ learning_data = {
     },
     "3": {
         "title": "Learn E Major Chord",
-        "instruction": "Strum all 6 strings downward: 1st finger on G-string 1st fret, 2nd finger on A-string 2nd fret, 3rd finger on D-string 2nd fret.",
+        "instruction": "Place your index finger on the 1st fret of the G string, middle on the 2nd fret of the A string, and ring on the 2nd fret of the D string. Strum all six strings.",
         "video": "/static/media/chord_videos/EChord.mp4",
         "image": "/static/media/chord_images/e_major.png",
         "audio": "/static/media/e_major_chord_audio.mp3"
-    }, 
+    },
     "4": {
         "title": "Learn D Major Chord",
-        "instruction": "Place your index on the 2nd fret of the G string, middle on the 2nd fret of the high E, ring on the 3rd fret of the B string, and strum the bottom 4 strings.",
+        "instruction": "Place your index finger on the 2nd fret of the G string, middle on the 2nd fret of the high E string, and ring on the 3rd fret of the B string. Strum the bottom four strings.",
         "image": "/static/media/chord_images/d_major.png",
         "audio": "/static/media/d_chord_audio.mp3"
     },
     "5": {
         "title": "Learn G Major Chord",
-        "instruction": "Place your middle on the 3rd fret of the low E, index on the 2nd fret of A, ring on the 3rd fret of high E, pinky on the 3rd fret of B, and strum all 6 strings",
+        "instruction": "Place your middle finger on the 3rd fret of the low E string, index on the 2nd fret of the A string, ring on the 3rd fret of the high E string, and pinky on the 3rd fret of the B string. Strum all six strings.",
         "image": "/static/media/chord_images/g_major.png",
         "audio": "/static/media/g_chord_audio.mp3"
-    }, 
+    },
     "6": {
         "title": "Learn C Major Chord",
-        "instruction": "Place your ring on the 3rd fret of A, middle on the 2nd fret of D, index on the 1st fret of B, and strum from the A string down (skip low E)",
+        "instruction": "Place your ring finger on the 3rd fret of the A string, middle on the 2nd fret of the D string, and index on the 1st fret of the B string. Strum from the A string downward (skip the low E).",
         "image": "/static/media/chord_images/c_major.png",
         "audio": "/static/media/c_chord_audio.mp3"
     }
 }
+
 
 
 # Quiz content
