@@ -47,8 +47,16 @@
       </form>
       {% elif question.type == 'string_input' %}
       <form method="POST" action="{{ url_for('submit_quiz') }}" id="quizForm">
-        <div class="text-center mb-2" style="font-size: 1rem; color: #444;">
-          Type the letter names of the guitar strings below the corresponding box.
+        <div class="text-center mb-2">
+          <span class="hint-icon" style="cursor: pointer; display: inline-block; position: relative;">
+            <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle;">
+              <circle cx="12" cy="12" r="11" fill="#eee" stroke="#888" stroke-width="2"/>
+              <text x="12" y="17" text-anchor="middle" font-size="18" fill="#888" font-family="Arial" font-weight="bold">?</text>
+            </svg>
+            <span class="hint-tooltip" style="display:none; position: absolute; left: 28px; top: 0; background: #fff; border: 1px solid #888; border-radius: 6px; padding: 8px 12px; font-size: 0.95em; color: #222; box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 10; white-space: nowrap;">
+              Eddie Ate Dynamite, Good Bye Eddie
+            </span>
+          </span>
         </div>
         <div class="fret-diagram-container mb-4" style="position: relative; width: 320px; height: 320px; margin: 0 auto;">
           <img src="{{ question.image }}" alt="Blank Chord Diagram" style="width: 100%; height: 100%; display: block;" />
@@ -132,4 +140,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 <script src="{{ url_for('static', filename='js/fret-diagram-image.js') }}"></script>
 <script src="{{ url_for('static', filename='js/quiz-feedback.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var hintIcon = document.querySelector('.hint-icon');
+  if (hintIcon) {
+    var tooltip = hintIcon.querySelector('.hint-tooltip');
+    hintIcon.addEventListener('mouseenter', function() {
+      tooltip.style.display = 'block';
+    });
+    hintIcon.addEventListener('mouseleave', function() {
+      tooltip.style.display = 'none';
+    });
+    hintIcon.addEventListener('focus', function() {
+      tooltip.style.display = 'block';
+    });
+    hintIcon.addEventListener('blur', function() {
+      tooltip.style.display = 'none';
+    });
+  }
+});
+</script>
 {% endblock %}

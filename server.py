@@ -52,13 +52,13 @@ learning_data = {
 quiz_data = {
     "1": {
         "question": "Which chord is being played?",
-        "options": ["A", "B", "C", "D"],
-        "correct": "A",
-        "image": "/static/media/chord_images/a_major.png"
+        "options": ["A", "B", "C", "G"],
+        "correct": "G",
+        "image": "/static/media/chord_images/g_major.png"
     },
     "2": {
         "type": "string_input",
-        "question": "Type the letter names of the highlighted guitar strings.",
+        "question": "Type the letter names of the guitar strings below the corresponding box.",
         "strings": [
             {"name": "A", "index": 1},  # 5th string from left (E A D G B e)
             {"name": "B", "index": 4}   # 2nd string from left
