@@ -23,7 +23,7 @@ learning_data = {
     "2": {
         "title": "Learn A Major Chord",
         "instruction": "Place your index, middle, and ring fingers on the 2nd fret of the D, G, and B strings. Strum from the A string downward.",
-        "video": "/static/media/chord_videos/AChord.mp4",
+        "video": "/static/media/chord_videos/Achord.mp4",
         "image": "/static/media/chord_images/a_major.png",
         "image2": "/static/media/fret_diagram.png",
         "audio": "/static/media/a_chord_audio.mp3"
@@ -31,25 +31,28 @@ learning_data = {
     "3": {
         "title": "Learn E Major Chord",
         "instruction": "Place your index finger on the 1st fret of the G string, middle on the 2nd fret of the A string, and ring on the 2nd fret of the D string. Strum all six strings.",
-        "video": "/static/media/chord_videos/EChord.mp4",
+        "video": "/static/media/chord_videos/Echord.mp4",
         "image": "/static/media/chord_images/e_major.png",
         "audio": "/static/media/e_major_chord_audio.mp3"
     },
     "4": {
         "title": "Learn D Major Chord",
         "instruction": "Place your index finger on the 2nd fret of the G string, middle on the 2nd fret of the high E string, and ring on the 3rd fret of the B string. Strum the bottom four strings.",
+        "video": "/static/media/chord_videos/Dchord.mp4",
         "image": "/static/media/chord_images/d_major.png",
         "audio": "/static/media/d_chord_audio.mp3"
     },
     "5": {
         "title": "Learn G Major Chord",
         "instruction": "Place your middle finger on the 3rd fret of the low E string, index on the 2nd fret of the A string, ring on the 3rd fret of the high E string, and pinky on the 3rd fret of the B string. Strum all six strings.",
+        "video": "/static/media/chord_videos/Gchord.mp4",
         "image": "/static/media/chord_images/g_major.png",
         "audio": "/static/media/g_chord_audio.mp3"
     },
     "6": {
         "title": "Learn C Major Chord",
         "instruction": "Place your ring finger on the 3rd fret of the A string, middle on the 2nd fret of the D string, and index on the 1st fret of the B string. Strum from the A string downward (skip the low E).",
+        "video": "/static/media/chord_videos/Cchord.mp4",
         "image": "/static/media/chord_images/c_major.png",
         "audio": "/static/media/c_chord_audio.mp3"
     }
