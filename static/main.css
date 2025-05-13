@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #b9e1b7;
+  background-color: #a6c893f9;
 }
 
 .title-font {
@@ -8,17 +8,17 @@ body {
 }
 
 h1, h2 {
-  color: #2c3e50;
+  color: rgb(48, 48, 48);
 }
 
 button, .btn {
   font-size: 1.1rem;
   padding: 10px 20px;
-  background-color: #1c8a43;
+  background-color: #1f7b3f;
 }
 
 .custom-navbar {
-  background-color: rgb(97, 156, 71) !important;
+  background-color: rgb(60, 60, 60) !important;
 }
 
 .custom-navbar .navbar-brand,
