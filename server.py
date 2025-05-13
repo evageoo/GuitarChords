@@ -25,7 +25,6 @@ learning_data = {
         "instruction": "Place your index, middle, and ring fingers on the 2nd fret of the D, G, and B strings. Strum from the A string downward.",
         "video": "/static/media/chord_videos/Achord.mp4",
         "image": "/static/media/chord_images/a_major.png",
-        "image2": "/static/media/fret_diagram.png",
         "audio": "/static/media/a_chord_audio.mp3"
     },
     "3": {

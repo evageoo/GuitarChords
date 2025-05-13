@@ -1,46 +1,27 @@
 {% extends "layout.html" %} {% block content %}
-<div class="container text-center py-5">
-  <h2 class="mb-4">{{ lesson.title }}</h2>
-  <p class="lead">{{ lesson.instruction }}</p>
+<div class="container py-5">
+  <h2 class="mb-4" id="lesson-title">{{ lesson.title }}</h2>
+  <div class="lead font-weight-bold mb-4" style="font-size: 1.25em;">{{ lesson.instruction }}</div>
 
-  <div class="row justify-content-center mb-4">
+  <div class="d-flex flex-wrap justify-content-center align-items-start mb-3" style="gap: 24px;">
     {% if lesson.image %}
-    <div class="col-md-4">
-      <img
-        src="{{ lesson.image }}"
-        class="img-fluid mb-3"
-        alt="Chord Diagram"
-      />
-    </div>
-    {% endif %} {% if lesson.image2 %}
-    <div class="col-md-4">
-      <img
-        src="{{ lesson.image2 }}"
-        class="img-fluid mb-3"
-        alt="Fingering Help"
-      />
-    </div>
+      <img src="{{ lesson.image }}" alt="Chord Diagram" class="img-fluid" style="height: 220px; width: auto; object-fit: contain;"/>
+    {% endif %}
+    {% if lesson.video %}
+      <video controls class="img-fluid" style="height: 220px; width: auto; object-fit: contain;">
+        <source src="{{ lesson.video }}" type="video/mp4" />
+        Your browser does not support the video element.
+      </video>
     {% endif %}
   </div>
 
   {% if lesson.audio %}
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-6 text-center">
-      <audio controls style="width: 100%">
+    <div class="text-center mb-4">
+      <audio controls style="width: 100%; max-width: 400px;">
         <source src="{{ lesson.audio }}" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
-  </div>
-  {% endif %} {% if lesson.video %}
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-6 text-center">
-      <video controls style="width: 100%; max-width: 500px">
-        <source src="{{ lesson.video }}" type="video/mp4" />
-        Your browser does not support the video element.
-      </video>
-    </div>
-  </div>
   {% endif %}
 
   <div class="text-center mt-4">
@@ -66,57 +47,6 @@
     >
     {% endif %}
   </div>
-
-  <!-- <h2 class="mb-4">{{ lesson.title }}</h2>
-  <p class="lead">{{ lesson.instruction }}</p>
-
-  {% if lesson.image %}
-  <img
-    src="{{ lesson.image }}"
-    class="img-fluid mb-3"
-    alt="Chord Diagram"
-    width="300"
-  />
-  {% endif %} {% if lesson.image2 %}
-  <img
-    src="{{ lesson.image2 }}"
-    class="img-fluid mb-3"
-    alt="Chord Diagram"
-    width="300"
-  />
-  {% endif %} {% if lesson.audio or lesson.video %}
-  <div class="row justify-content-center mb-4">
-    {% if lesson.audio %}
-    <div class="col-md-4 text-center">
-      <audio controls style="width: 100%">
-        <source src="{{ lesson.audio }}" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-    {% endif %} {% if lesson.video %}
-    <div class="col-md-6 text-center">
-      <video controls style="width: 100%; max-width: 300px">
-        <source src="{{ lesson.video }}" type="video/mp4" />
-        Your browser does not support the video element.
-      </video>
-    </div>
-    {% endif %}
-  </div>
-  {% endif %}
-  <div class="text-center mt-4">
-    <a
-      href="javascript:history.back()"
-      class="btn btn-sm mr-2"
-      style="background-color: #b2d8b2; color: #2c3e50"
-    >
-      ← Go Back
-    </a>
-    {% if is_last_lesson %}
-      <a href="{{ url_for('quiz', quiz_id=1) }}" class="btn btn-success btn-lg" id="nextBtn">Begin Quiz</a>
-    {% else %}
-      <a href="{{ url_for('learn', lesson_id=lesson_id+1) }}" class="btn btn-success btn-lg" id="nextBtn">Next Lesson</a>
-    {% endif %}
-  </div> -->
 </div>
 
 <!-- progress bar -->
