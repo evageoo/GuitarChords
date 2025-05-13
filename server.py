@@ -113,7 +113,7 @@ quiz_data = {
     },
     "7":{
         "type": "multiple_choice",
-        "question": "What is chord was not taught in this lesson?",
+        "question": "What chord was not taught in this lesson?",
         "options": [
         "E major chord",
         "E minor chord",
