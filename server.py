@@ -100,14 +100,25 @@ quiz_data = {
     },
     "6":{
         "type": "multiple_choice",
-        "question": "When switching between A and D, what finger do you usually move first?",
+        "question": "What is the highest pitch string?",
         "options": [
-        "Index finger",
-        "Middle finger",
-        "Ring finger",
-        "Pinkie finger"
+        "The 6th string (E)",
+        "The 5th string (A)",
+        "The 2nd string (B)",
+        "The 1st string (E)"
     ],
-    "correct":"Index finger"
+    "correct":"The 1st string (E)"
+    },
+    "7":{
+        "type": "multiple_choice",
+        "question": "What is chord was not taught in this lesson?",
+        "options": [
+        "E major chord",
+        "E minor chord",
+        "D major chord",
+        "A major chord"
+    ],
+    "correct":"E minor chord"
     }
 }
 
